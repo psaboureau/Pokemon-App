@@ -23,6 +23,8 @@ const displayScreen = (name, id, weight, height, sprite, types) => {
   pokemonId.textContent = "#" + id;
   pokemonWeight.textContent = "Weight: " + weight;
   pokemonHeight.textContent = "Height: " + height;
+  pokemonSprite.classList.add("visible")
+  pokemonSprite.classList.remove("hidden");
   pokemonSprite.src = sprite;
 
   pokemonTypes.innerText = "";
@@ -57,7 +59,7 @@ const testApi = async (pokemonName) => {
   try {
     const response = await fetch(`${pokeUrl}${pokemonName.toLowerCase()}`);
     if (!response.ok) {
-      throw new Error("Response not ok");
+      throw new Error("Response not okS");
     }
     const pokemon = await response.json();
     const {

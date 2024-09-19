@@ -9,7 +9,7 @@
   <body>
     <main>
       <h1>Pokémon Search App</h1>
-      <div class="main-app">
+      <div class="main__app">
         <form class="search-form" id="search-form">
           <label for="search-input">Search for Pokémon Name or ID:</label>
           <div class="search-controls">
@@ -26,7 +26,7 @@
         </form>
 
         <section class="display-screen">
-          <header class="display-header">
+          <div class="display-header">
             <div class="name-id">
               <span id="pokemon-name"></span>
               <span id="pokemon-id"></span>
@@ -35,14 +35,18 @@
               <span id="weight"></span>
               <span id="height"></span>
             </div>
-          </header>
+          </div>
 
           <div class="image-container">
-            <img id="sprite" src="" alt="Pokémon sprite" class="sprite-image" />
+            <img
+              id="sprite"
+              src=""
+              alt="Pokémon sprite"
+              class="sprite-image hidden"
+            />
           </div>
 
           <div id="types" class="types"></div>
-          <div id="stats" class="additional-stats"></div>
         </section>
 
         <section class="display-table">
