@@ -10,7 +10,6 @@ const pokemonWeight = document.getElementById("weight");
 const pokemonHeight = document.getElementById("height");
 const pokemonTypes = document.getElementById("types");
 
-
 const displayScreen = (name, id, weight, height, sprite, types) => {
   pokemonName.textContent = name;
   pokemonId.textContent = "#" + id;
@@ -18,24 +17,14 @@ const displayScreen = (name, id, weight, height, sprite, types) => {
   pokemonHeight.textContent = "Height: " + height;
   pokemonSprite.src = sprite;
 
-  pokemonTypes.innerText = "";
+  types.textContent = "";
 
   types.forEach((el) => {
-    const type = document.createElement('span');
+    const type = document.createElement("span");
     type.innerText = el.type.name;
     pokemonTypes.appendChild(type);
-  })
-}
-
-const displayTable = (stats) => {
-  const statsObj = {}
-  stats.forEach((el) => {
-    statsObj[el.stat.name] = el.base_stat
-  })
-
-  const { hp, attack, defense } = statsObj;
-
-}
+  });
+};
 
 const testApi = async (pokemonName) => {
   try {
@@ -51,13 +40,10 @@ const testApi = async (pokemonName) => {
       id,
       stats,
       types,
-      sprites: { front_default: sprite }
+      sprites: { front_default: sprite },
     } = pokemon;
 
     displayScreen(name, id, weight, height, sprite, types);
-    displayTable(stats);
-
-
   } catch (error) {
     alert("Pokemon not found");
   }
