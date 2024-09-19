@@ -9,22 +9,49 @@ const pokemonSprite = document.getElementById("sprite");
 const pokemonWeight = document.getElementById("weight");
 const pokemonHeight = document.getElementById("height");
 const pokemonTypes = document.getElementById("types");
+const pokemonHp = document.getElementById("hp");
+const pokemonAttack = document.getElementById("attack");
+const pokemonDefense = document.getElementById("defense");
+const pokemonSpecialAttack = document.getElementById("special-attack");
+const pokemonSpecialDefense = document.getElementById("special-defense");
+const pokemonSpeed = document.getElementById("speed")
+
 
 const displayScreen = (name, id, weight, height, sprite, types) => {
+
   pokemonName.textContent = name;
   pokemonId.textContent = "#" + id;
   pokemonWeight.textContent = "Weight: " + weight;
   pokemonHeight.textContent = "Height: " + height;
   pokemonSprite.src = sprite;
 
-  types.textContent = "";
+  pokemonTypes.innerText = "";
 
   types.forEach((el) => {
-    const type = document.createElement("span");
+    const type = document.createElement('span');
     type.innerText = el.type.name;
     pokemonTypes.appendChild(type);
-  });
-};
+  })
+
+}
+
+const displayTable = (stats) => {
+  const statsObj = {}
+  stats.forEach((el) => {
+    console.log(el)
+    statsObj[el.stat.name] = el.base_stat
+  })
+
+  const { hp, attack, defense, 'special-attack': specialAttack, 'special-defense': specialDefense, speed } = statsObj;
+
+  pokemonHp.innerText = hp;
+  pokemonAttack.innerText = attack;
+  pokemonDefense.innerText = defense;
+  pokemonSpecialAttack.innerText = specialAttack;
+  pokemonSpecialDefense.innerText = specialDefense;
+  pokemonSpeed.innerText = speed;
+
+}
 
 const testApi = async (pokemonName) => {
   try {
@@ -40,10 +67,13 @@ const testApi = async (pokemonName) => {
       id,
       stats,
       types,
-      sprites: { front_default: sprite },
+      sprites: { front_default: sprite }
     } = pokemon;
 
     displayScreen(name, id, weight, height, sprite, types);
+    displayTable(stats);
+
+
   } catch (error) {
     alert("Pokemon not found");
   }
