@@ -16,10 +16,10 @@ const pokemonSpecialAttack = document.getElementById("special-attack");
 const pokemonSpecialDefense = document.getElementById("special-defense");
 const pokemonSpeed = document.getElementById("speed")
 
-
+// TODO: Add the code to display the different types with the proper colors
 const displayScreen = (name, id, weight, height, sprite, types) => {
 
-  pokemonName.textContent = name;
+  pokemonName.textContent = name.toUpperCase();
   pokemonId.textContent = "#" + id;
   pokemonWeight.textContent = "Weight: " + weight;
   pokemonHeight.textContent = "Height: " + height;
@@ -31,7 +31,9 @@ const displayScreen = (name, id, weight, height, sprite, types) => {
 
   types.forEach((el) => {
     const type = document.createElement('span');
-    type.innerText = el.type.name;
+    type.classList.add('type')
+    type.classList.add(el.type.name)
+    type.innerText = el.type.name.toUpperCase();
     pokemonTypes.appendChild(type);
   })
 
